@@ -1,0 +1,2 @@
+baynas.NewClass
+Baynas.AddTeam
