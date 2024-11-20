@@ -36,16 +36,17 @@ public class config {
     }
 
     // Add record with parameterized query
-    public void addRecord(String sql, Object... values) {
-        try (Connection conn = connectDB(); 
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            setPreparedStatementValues(pstmt, values);
+     public void addRecord(String sql, Object... params) {
+        try (Connection conn = connectDB(); PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            for (int i = 0; i < params.length; i++) {
+                pstmt.setObject(i + 1, params[i]);
+            }
             pstmt.executeUpdate();
-            System.out.println("Record added successfully!");
         } catch (SQLException e) {
             System.out.println("Error adding record: " + e.getMessage());
         }
-    }
+    
+}
 
     // View records with headers and columns
     public void viewRecords(String sqlQuery, String[] headers, String[] columnNames) {

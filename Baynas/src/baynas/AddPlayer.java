@@ -57,8 +57,16 @@ public class AddPlayer {
         Scanner sc = new Scanner(System.in);
         config conf = new config();
         String teamId;
-        
-     
+
+        // Get player details
+        System.out.print("Enter First Name: ");
+        String firstName = sc.nextLine();
+        System.out.print("Enter Last Name: ");
+        String lastName = sc.nextLine();
+        System.out.print("Enter Date of Birth (YYYY-MM-DD): ");
+        String dateOfBirth = sc.nextLine();
+        System.out.print("Enter Position: ");
+        String position = sc.nextLine();
         String query = "SELECT * FROM tbl_team";
         String[] headers = {"Team ID", "Team Name", "Team Location", "Team Coach", "Team Contact"};
         String[] columns = {"t_id", "team_name", "t_location", "t_coach", "t_contact"};
@@ -74,16 +82,6 @@ public class AddPlayer {
                 System.out.println("Team ID does not exist. Please try again.");
             }
         }
-
-        // Get player details
-        System.out.print("Enter First Name: ");
-        String firstName = sc.nextLine();
-        System.out.print("Enter Last Name: ");
-        String lastName = sc.nextLine();
-        System.out.print("Enter Date of Birth (YYYY-MM-DD): ");
-        String dateOfBirth = sc.nextLine();
-        System.out.print("Enter Position: ");
-        String position = sc.nextLine();
 
         // Insert player record
         String sql = "INSERT INTO Player (f_name, l_name, dob, p, t_id) VALUES (?, ?, ?, ?, ?)";
